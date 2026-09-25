@@ -1,0 +1,6 @@
+<launch>
+  <arg name="project" default="lio_sam"/>
+  <rosparam file="$(find lio_sam)/config/paramsLivoxIMU.yaml" command="load" />
+  <include file="$(find lio_sam)/launch/include/module_loam.launch" />
+  <include file="$(find lio_sam)/launch/include/module_robot_state_publisher.launch" />
+</launch>

@@ -1,0 +1,18 @@
+services:
+  mid360-lio:
+    image: ${IMAGE_TAG:-ghcr.io/qiurilinmu/mid360-lio-docker:noetic-amd64}
+    build:
+      context: .
+    container_name: mid360-lio
+    network_mode: host
+    privileged: true
+    restart: unless-stopped
+    environment:
+      ROS_MASTER_URI: http://127.0.0.1:11311
+      ROS_IP: ${HOST_LIDAR_IP:-192.168.1.5}
+    volumes:
+      - /dev:/dev
+      - ./data:/data
+      - ./config/MID360_config.json:/root/ws_livox/src/livox_ros_driver2/config/MID360_config.json:ro
+    command: ["bash", "-lc", "trap : TERM INT; sleep infinity & wait"]
+
