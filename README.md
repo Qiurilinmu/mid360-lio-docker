@@ -1,5 +1,7 @@
 # MID-360 LIO Docker
 
+可以直接拉到最底下，让亲爱的C(hatgppt)老师、C(laude)老师，D(eepseek)老师等等老师来帮你配置本项目！不过配置之前请确保你的机器是amd64/x86_64架构
+
 面向 Livox MID-360 的可复现 ROS1 Noetic 环境，包含官方
 `livox_ros_driver2`、Point-LIO 和 MID-360 适配版 LIO-SAM。项目目标是在新的
 Ubuntu 工控机上尽量少操作即可恢复当前已验证的环境。
