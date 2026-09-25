@@ -4,7 +4,7 @@ set -euo pipefail
 container="${MID360_CONTAINER:-mid360-lio}"
 docker start "$container" >/dev/null
 
-docker exec -d "$container" bash -lc '
+docker exec "$container" bash -lc '
 set -e
 source /opt/ros/noetic/setup.bash
 source /root/ws_livox/devel/setup.bash
@@ -32,4 +32,3 @@ nohup roslaunch point_lio mapping_mid360.launch rviz:=false \
 '
 
 echo "Point-LIO startup requested. Run scripts/status.sh to verify it."
-
