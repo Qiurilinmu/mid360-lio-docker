@@ -10,15 +10,18 @@ fi
 docker exec "$container" bash -lc '
 set +e
 patterns=(
-  pointlio_mapping lio_sam_mapOptmization lio_sam_featureExtraction
-  lio_sam_imageProjection lio_sam_imuPreintegration
-  livox_ros_driver2_node roslaunch roscore rosout
+  "^/root/ws_pointlio/devel/lib/point_lio/pointlio_mapping([[:space:]]|$)"
+  "^/root/ws_liosam_mid360/devel/lib/lio_sam/"
+  "^/root/ws_livox/devel/lib/livox_ros_driver2/livox_ros_driver2_node([[:space:]]|$)"
+  "^/usr/bin/python3 /opt/ros/noetic/bin/roslaunch([[:space:]]|$)"
+  "^/usr/bin/python3 /opt/ros/noetic/bin/roscore([[:space:]]|$)"
+  "^/usr/bin/python3 /opt/ros/noetic/bin/rosmaster([[:space:]]|$)"
+  "^/opt/ros/noetic/lib/rosout/rosout([[:space:]]|$)"
 )
-for pattern in "${patterns[@]}"; do pkill -TERM -f "/${pattern}([[:space:]]|$)"; done
+for pattern in "${patterns[@]}"; do pkill -TERM -f "$pattern"; done
 sleep 2
-for pattern in "${patterns[@]}"; do pkill -KILL -f "/${pattern}([[:space:]]|$)"; done
+for pattern in "${patterns[@]}"; do pkill -KILL -f "$pattern"; done
 true
 '
 
 echo "ROS, MID-360 driver, Point-LIO, and LIO-SAM processes stopped."
-
