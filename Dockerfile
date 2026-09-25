@@ -42,6 +42,7 @@ RUN mkdir -p /root/ws_livox/src \
     && git -C /root/ws_livox/src/livox_ros_driver2 checkout "$LIVOX_DRIVER2_COMMIT" \
     && cp /tmp/MID360_config.json /root/ws_livox/src/livox_ros_driver2/config/MID360_config.json \
     && cd /root/ws_livox/src/livox_ros_driver2 \
+    && source /opt/ros/noetic/setup.bash \
     && ./build.sh ROS1
 
 RUN mkdir -p /root/ws_pointlio/src /root/ws_liosam_mid360/src \
@@ -80,4 +81,3 @@ RUN mkdir -p /data/logs /data/maps/pointlio /data/maps/liosam \
 
 WORKDIR /root
 CMD ["bash", "-lc", "trap : TERM INT; sleep infinity & wait"]
-
