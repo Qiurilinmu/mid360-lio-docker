@@ -80,4 +80,5 @@ RUN mkdir -p /data/logs /data/maps/pointlio /data/maps/liosam \
     && ln -s /data/maps/liosam /root/Downloads/LOAM
 
 WORKDIR /root
+ENTRYPOINT []
 CMD ["bash", "-lc", "trap : TERM INT; sleep infinity & wait"]
